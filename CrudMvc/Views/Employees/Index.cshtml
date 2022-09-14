@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Crud.Models.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+
+}
+
+<body background="~/img/tech.jpg"></body>
+<p>
+    <a asp-action="Create" style="color:lightpink" class="btn btn-outline-secondary">Create New</a>
+</p>
+
+<table  class="table table table-bordered table-fluid"> 
+    <style>
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 10%;
+        }
+ 
+        td,th {
+            border: 1px solid #dddd;
+       /*     background-color:white;*/
+            text-align:center;
+            padding: 4px;
+        }
+        tr:nth-child(even) {
+           
+            background-color:ghostwhite;
+        }
+
+        <body background="~/img/tech.jpg" > </body >
+    </style>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Emp_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Designation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Action)
+            </th>
+    </thead>
+    <tbody>
+        
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Emp_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Designation)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "Edit", new {  id=item.ID },new{@class="btn btn-dark" })
+                    @Html.ActionLink("Details", "Details", new {  id=item.ID }, new{@class="btn btn-info"})
+                    @Html.ActionLink("Delete", "Delete", new {  id=item.ID }, new{@class="btn btn-danger"})
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
