@@ -14,6 +14,11 @@ namespace CrudMvc.Controllers
     {
         db dbop = new db();
         string msg = string.Empty;
+        public readonly List<Employee> list;
+        public EmployeesController()
+        {
+            list = _services.Get();
+        }
         EmployeeController _services = new EmployeeController();
        /* public EmployeesController(EmployeeController services)
         {
@@ -59,9 +64,12 @@ namespace CrudMvc.Controllers
         }
 */
         // GET: EmployeeController/Create
-        public ActionResult Create()
+        public ActionResult Create(string  response)
         {
-            return View();
+            Employee employee = new Employee();
+            employee.Response = response;
+
+            return View(employee);
         }
 
         // POST: EmployeeController/Create
@@ -69,16 +77,43 @@ namespace CrudMvc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection, Employee emp)
         {
-            var employee = _services.Post(emp);
-            if (emp != null)
+            try
             {
-                return RedirectToAction("Index");
+                var flag = "";
+                emp.Response = "";
+                foreach (var items in list)
+                {
+                    if (items.Email == emp.Email)
+                    {
+                        flag = "1";
+                    }
 
+                }
+                if (flag == "1")
+                {
+                    emp.Response = "Email Already exists";
+                    return RedirectToAction("Create", new { Response = emp.Response });
+                }
+                else
+                {
+                    var employee = _services.Post(emp);
+                    if (employee != null)
+                    {
+                        return RedirectToAction("Index");
+
+                    }
+                    return View();
+
+                }
+
+                return View(emp);
             }
-            return View();
-
+            catch (Exception ex)
+            {
+                return View(ex.Message);
+            }
         }
-
+    
         // GET: EmployeeController/Edit/5
         public ActionResult Edit(int id)
         {

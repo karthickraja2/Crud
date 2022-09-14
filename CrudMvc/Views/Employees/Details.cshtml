@@ -3,46 +3,72 @@
 @{
     ViewData["Title"] = "Details";
 }
-<div>
-    <a style="color:lightseagreen"<h1>Details</h1> </a>
-</div>
+<body>
+    <style>
+        body {
+            background-image: url('https://images.pexels.com/photos/10526919/pexels-photo-10526919.jpeg?auto=compress&cs=tinysrgb&w=600');
+            background-size: cover;
+        }
+
+    </style>
+
+</body>
+
+
 <div>
     @*<h4>EmployeeModels</h4>*@
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Emp_Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Emp_Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Designation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Designation)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-    </dl>
+    <div class=" container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class=" card">
+                    <div class="card-header">
+                        <h1 class="text-center text-success">Employee Details</h1>
+                    </div>
+                    <div class=" card-body">
+                        <dt class=" col-sm-2">
+                        @Html.DisplayNameFor(model => model.ID)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.EditorFor(model => model.ID)
+                        </dd>
+                        <dt class="col-sm-10">
+                            @Html.DisplayNameFor(model => model.Email)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.EditorFor(model => model.Email)
+                        </dd>
+                        <dt class="col-sm-10">
+                            @Html.DisplayNameFor(model => model.Emp_Name)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.EditorFor(model => model.Emp_Name)
+                        </dd>
+                        <dt class="col-sm-10">
+                            @Html.DisplayNameFor(model => model.Designation)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.EditorFor(model => model.Designation)
+                        </dd>
+                        <dt class="col-sm-10">
+                            @Html.DisplayNameFor(model => model.Type)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.EditorFor(model => model.Type)
+                        </dd>
+                        </dl>
+                        <form asp-action="Index">
+                            <input type="submit" value="Back To List" class="btn btn-dark m-3" />
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+                  @*  <div>
+                        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+                     
+                    </div>
+*@

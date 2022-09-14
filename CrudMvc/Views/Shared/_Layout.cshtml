@@ -28,7 +28,7 @@
                            
                         </li>*@
                         <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area=""asp-controller="Employees" asp-action="Index">EmployeeList</a>
+                        <a class="nav-link text-dark" asp-area=""asp-controller="Employees" asp-action="Index" class="btn btn-block">EMPLOYEE LIST</a>
                         </li>
                     @*    <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -43,11 +43,21 @@
             @RenderBody()
         </main>
     </div>
+    <body>
+        <style>
+            body {
+                background-image: url('https://images.pexels.com/photos/66284/winter-nature-season-trees-66284.jpeg?auto=compress&cs=tinysrgb&w=600');
+                background-size: cover;
+            }
+
+        </style>
+
+    </body>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
+       @* <div class="container">
             &copy; 2022 - CrudMvc - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+        </div>*@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

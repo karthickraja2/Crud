@@ -10,6 +10,8 @@ namespace CrudMvc.Models
         [Required(ErrorMessage ="Name is Required")]
         public string Emp_Name { get; set; } 
         public string Designation { get; set; } 
+
+       
         public string Type { get; set; } 
 
     }
