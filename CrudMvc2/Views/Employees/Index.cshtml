@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+<div class="row">
+    <div class="col-12">
+        @(Html.Kendo().Grid<Crud.Models.Employee>()
+            .Name("grid")
+            .Columns(columns =>
+            {
+                columns.Bound(p => p.ID).Filterable(false);
+                columns.Bound(p => p.Email);
+                columns.Bound(p => p.Emp_Name);
+                columns.Bound(p => p.Designation);
+                columns.Bound(p => p.Action);
+            })
+            .Pageable()
+            .Sortable()
+            .Scrollable()
+            .Filterable()
+            .HtmlAttributes(new { style = "height:550px;" })
+            .DataSource(dataSource => dataSource
+            .Ajax()
+            .PageSize(20)
+            .Read(read => read.Action("EmployeeList", "Employees"))
+            )
+            )
+    </div>
+</div>

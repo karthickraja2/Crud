@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using Crud.Models;
 using System.Data;
 using System;
+using System.Data.SqlClient;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using CrudMvc.Models;
 
 namespace CrudMvc.Controllers
 {
@@ -56,20 +59,22 @@ namespace CrudMvc.Controllers
 
             return View(emp);
         }
-      /*  public ActionResult Details(int id)
-        {
-            var emp = _services.Get(id);
-            return View(emp);
+        /*  public ActionResult Details(int id)
+          {
+              var emp = _services.Get(id);
+              return View(emp);
 
-        }
-*/
+          }
+  */
         // GET: EmployeeController/Create
-        public ActionResult Create(string  response)
+        public ActionResult Create(string response)
         {
+
             Employee employee = new Employee();
             employee.Response = response;
-
             return View(employee);
+
+            return RedirectToAction("Index");
         }
 
         // POST: EmployeeController/Create
@@ -143,13 +148,41 @@ namespace CrudMvc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection, Employee emp)
         {
-            var employee = _services.Put(id, emp);
-            if (emp != null)
+            try
             {
-                return RedirectToAction("Index");
+                var flag = "";
+                emp.Response = "";
+                foreach (var items in list)
+                {
+                    if (items.Email == emp.Email)
+                    {
+                        flag = "1";
+                    }
 
+                }
+                if (flag == "1")
+                {
+                    emp.Response = "Email Already exists";
+                    return RedirectToAction("Create", new { Response = emp.Response });
+                }
+                else
+                {
+                    var employee = _services.Post(emp);
+                    if (employee != null)
+                    {
+                        return RedirectToAction("Index");
+
+                    }
+                    return View();
+
+                }
+
+                return View(emp);
             }
-            return View();
+            catch (Exception ex)
+            {
+                return View(ex.Message);
+            }
         }
 
         // GET: EmployeeController/Delete/5

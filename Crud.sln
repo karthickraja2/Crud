@@ -5,7 +5,12 @@ VisualStudioVersion = 17.3.32811.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Crud", "Crud\Crud.csproj", "{E6A62A64-8FF3-4675-8F73-F4BAA52F5FB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrudMvc", "CrudMvc\CrudMvc.csproj", "{042F67B0-51E3-4BB0-A022-2E15D8EB6259}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrudMvc", "CrudMvc\CrudMvc.csproj", "{042F67B0-51E3-4BB0-A022-2E15D8EB6259}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{12A4CC0A-1D1B-4814-856B-F6B560A186ED}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

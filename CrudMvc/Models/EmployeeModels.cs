@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CrudMvc.Models
 {
@@ -9,9 +11,9 @@ namespace CrudMvc.Models
         public string Email { get; set; }
         [Required(ErrorMessage ="Name is Required")]
         public string Emp_Name { get; set; } 
-        public string Designation { get; set; } 
+        public string Designation { get; set; }
 
-       
+
         public string Type { get; set; } 
 
     }
