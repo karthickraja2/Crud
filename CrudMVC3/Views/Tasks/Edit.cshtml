@@ -1,0 +1,40 @@
+﻿@model Crud.Models.Task
+
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h1 class="text-left text-success">Edit Task</h1>
+    </div>
+    <div class=" card-body" class="text-center">
+        <form method="post" asp-controller="Tasks" asp-action="Edit">
+           
+            <div class="col-md-4">
+                <label for="Task_Name">Task_Name</label>
+                @Html.Kendo().TextAreaFor(ss=>ss.Task_Name)
+            </div>
+            <div class="row-cols-4">
+                <div class="col-md-4">
+                    <label for="Description">Description</label>
+                    @Html.Kendo().TextAreaFor(ss=>ss.Description)
+                </div>
+               
+
+               
+                <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-info" />
+                    <a asp-action="Index">Back to List</a>
+                </div>
+                <br />
+            </div>
+        </form>
+    </div>
+    <style>
+        .card {
+            margin-left: 10px;
+            padding-left: 5px;
+        }
+    </style>

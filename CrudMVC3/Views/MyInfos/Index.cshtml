@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+<p>
+    <a asp-action="Create" style="color:mediumaquamarine" class="btn bg-dark">Create MyInfo</a>
+</p>
+<h1 class="text-center text-warning">INFO DATA</h1>
+<div class="row">
+    <div class="col-12">
+        @(
+            Html.Kendo().Grid<Crud.Models.MyTaskInfo>()
+            .ToolBar(t => t.Search())
+            .ToolBar(tools => tools.Excel())
+            .Name("grid")
+            .Columns(columns =>
+            {
+                columns.Bound(p => p.Emp_Name);
+                columns.Bound(p => p.Task_Name).Filterable(false);
+
+                columns.Command(command => { command.Custom("Delete").Click("DeleteMyInfo").HtmlAttributes(new { style = "color:red;" }); }).Width(200);
+
+            })
+            
+            .Editable(editable => editable.Mode(GridEditMode.PopUp))
+            .Pageable()
+            .Sortable()
+            .Search(s =>
+            {
+                s.Field(o => o.ID, "eq");
+                s.Field(o => o.Task_Name, "contains");
+               
+
+            })
+            .Excel(excel => excel
+            .FileName("MyInfo Data")
+            .Filterable(true)
+            .ProxyURL(Url.Action("MyInfoList", "MyInfos"))
+            )
+            .Scrollable()
+            .Filterable()
+            .HtmlAttributes(new { style = "height:550px;" })
+            .DataSource(dataSource => dataSource
+            .Ajax()
+            .PageSize(8)
+            .Read(read => read.Action("MyInfoList", "MyInfos"))
+            .Read(read => read.Action("MyInfoList", "MyInfos"))
+
+            )
+            )
+
+    </div>
+</div>
+
+<script>
+    function DeleteMyInfo(m) {
+        
+        m.preventDefault();
+        var dataItem = this.dataItem($(m.currentTarget).closest("tr"));
+        window.location.href = '/MyInfos/Delete/' + dataItem.ID;
+    }
+</script>
+
+<body>
+    <style>
+        body {
+            background-image: url('https://images.pexels.com/photos/13210869/pexels-photo-13210869.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load');
+            background-size: cover;
+        }
+
+        .k-button-solid-base {
+            border-color: rgba(0,0,0,.08);
+            color: #00c4ff;
+            background-color: #f5f5f5;
+            background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.02));
+        }
+
+        .k-grid-header {
+            border-color: rgba(0,0,0,.08);
+            font-size: larger;
+            text-align: justify-all;
+            color: black;
+            background-color: #fff;
+        }
+
+
+    </style>
+
+</body>
+
+
+

@@ -1,0 +1,94 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+<p>
+    <a asp-action="Create" style="color:mediumaquamarine" class="btn bg-dark">Create New Task</a>
+</p>
+<h1 class="text-center text-warning">TASK LIST</h1>
+<div class="row">
+    <div class="col-12">
+        @(
+            Html.Kendo().Grid<Crud.Models.Task>()
+            .ToolBar(t => t.Search())
+            .ToolBar(tools => tools.Excel())
+            .Name("grid")
+            .Columns(columns =>
+            {
+              
+                columns.Bound(p => p.Task_Name).Filterable(false);
+                columns.Bound(p => p.Description);
+
+                columns.Command(command => { command.Custom("Edit").Click("ShowTaskDetails").HtmlAttributes(new { style = "color:green;" }); command.Custom("Delete").Click("DeleteTask").HtmlAttributes(new { style = "color:red;" }); }).Width(200);
+
+            })
+            .Editable(editable => editable.Mode(GridEditMode.PopUp))
+            .Pageable()
+            .Sortable()
+            .Search(s =>
+            {
+                s.Field(o => o.Task_ID, "eq");
+                s.Field(o => o.Task_Name, "contains");
+
+            })
+            .Excel(excel => excel
+            .FileName("Task Data")
+            .Filterable(true)
+            .ProxyURL(Url.Action("TaskList", "Tasks"))
+            )
+            .Scrollable()
+            .Filterable()
+            .HtmlAttributes(new { style = "height:550px;" })
+            .DataSource(dataSource => dataSource
+            .Ajax()
+            .PageSize(8)
+            .Read(read => read.Action("TaskList", "Tasks"))
+            .Update(update => update.Action("Edit", "Tasks"))
+            .Read(read => read.Action("TaskList", "Tasks"))
+
+            )
+            )
+
+    </div>
+</div>
+
+<script>
+    function ShowTaskDetails(t) {
+        t.preventDefault();
+        var dataItem = this.dataItem($(t.currentTarget).closest("tr"));
+        window.location.href = '/Tasks/Edit/' + dataItem.Task_ID;
+    }
+    function DeleteTask(a) {
+        a.preventDefault();
+        var dataItem = this.dataItem($(a.currentTarget).closest("tr"));
+        window.location.href = '/Tasks/Delete/' + dataItem.Task_ID;
+    }
+</script>
+
+<body>
+    <style>
+        body {
+            background-image: url('https://images.pexels.com/photos/13210869/pexels-photo-13210869.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load');
+            background-size: cover;
+        }
+
+        .k-button-solid-base {
+            border-color: rgba(0,0,0,.08);
+            color: #00c4ff;
+            background-color: #f5f5f5;
+            background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.02));
+        }
+
+        .k-grid-header {
+            border-color: rgba(0,0,0,.08);
+            font-size: larger;
+            text-align: justify-all;
+            color: black;
+            background-color: #fff;
+        }
+
+
+    </style>
+
+</body>
+
+                    

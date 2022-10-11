@@ -1,0 +1,71 @@
+﻿@model Crud.Models.MyInfo
+
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class=" container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class=" card">
+                <div class="card-header">
+                    <h1 class="text-center text-success">Create MyInfo</h1>
+                </div>
+                <div class=" card-body">
+        <form method="post" asp-controller="MyInfos" asp-action="Create">
+                
+            <div class="col-md-4">
+                <label for="Emp_Name">Emp_Name</label>
+                @(Html.Kendo().AutoCompleteFor(ss=>ss.Emp_Name)
+                .DataTextField("Name")
+                .DataSource(source => source.Read(read => read.Action("AutocompleteEmpName", "MyInfos")))
+                )
+            </div>
+            <input type="hidden"  id="Task_Name" name="Task_Name"/>
+            <div class="col-md-4">
+                <label for="Task_Name">Task_Name</label>
+                @(Html.Kendo().MultiSelect()
+                    .Name("Task")
+                    .DataTextField("Name")
+                    .DataValueField("Name")
+                    .Placeholder("Select Task Name")
+                    .AutoBind(false)
+                    .DataSource(source => source.Read(read => read.Action("AutocompleteTaskName", "MyInfos")))
+                    )
+            
+                <div class="form-group">
+                                <input type="submit" value="Create" id="btnsave" class="btn btn-primary" />
+                    <a asp-action="Index">Back to List</a>
+                
+                </div>
+                
+                <br />
+            </div>
+            
+        </form>
+        
+    </div>
+<style>
+
+        .card {
+            margin-left: 10px;
+            padding-left: 5px;
+        }
+         body {
+            background-image: url('https://images.pexels.com/photos/4855370/pexels-photo-4855370.jpeg?auto=compress&cs=tinysrgb&w=600');
+            background-size: cover;
+        }
+ </style>
+                  
+<script>
+      $(document).ready(function (){
+
+                        $("#btnsave").click(function () {
+            debugger;
+         var task =$("#Task").data("kendoMultiSelect").value().join();
+         $("#Task_Name").val(task);
+         console.log(task);
+       });
+    });
+ </script>     

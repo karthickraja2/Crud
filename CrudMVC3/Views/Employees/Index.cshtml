@@ -1,0 +1,122 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<p>
+    <a asp-action="Create" style="color:mediumaquamarine" class="btn bg-dark">Create Employee</a>
+</p>
+<h1 class="text-center text-warning">EMPLOYEE LIST</h1>
+
+<div class="row">
+    <div class="col-12">
+        @(
+            Html.Kendo().Grid<Crud.Models.Employee>()
+            .ToolBar(t => t.Search())
+            .ToolBar(tools => tools.Excel())
+            .ToolBar(tools => tools.Pdf())
+            .HtmlAttributes(new{id= "Employee data"})
+            .Name("grid")
+            .HtmlAttributes(new{style ="color:brown"})
+            .Columns(columns => 
+
+            {
+              
+                columns.Bound(p => p.Email).Filterable(false);
+                columns.Bound(p => p.Emp_Name);
+                columns.Bound(p => p.Designation);
+                columns.Command(command => { command.Custom("Edit").Click("ShowEmployeeDetails").HtmlAttributes(new { style = "color:green;" }); command.Custom("Delete").Click("DeleteEmployee").HtmlAttributes(new { style = "color:red;" }); }).Width(200);
+
+            })
+           
+            .Editable(editable => editable.Mode(GridEditMode.PopUp))
+            .Pageable()
+            .Sortable()
+            .Search(s =>
+
+            {
+                s.Field(o => o.ID, "eq");
+                s.Field(o => o.Emp_Name, "contains");
+
+            })
+
+            .Excel(excel => excel
+                 .FileName("Employee Data")
+                 .Filterable(true)
+            .ProxyURL(Url.Action("EmployeeList","Employees"))
+            )
+            .Pdf(pdf => pdf
+                .FileName("Employee Pdf")
+                .AvoidLinks()
+                .TemplateId("page-template")
+                .ProxyURL(Url.Action("EmployeeList","Employees"))
+             )
+            .Scrollable()
+            .Filterable()
+            .HtmlAttributes(new { style = "height:550px;" })
+            .DataSource(dataSource => dataSource
+                .Ajax()
+                .PageSize(8)
+           
+                .Read(read => read.Action("EmployeeList", "Employees"))
+                .Update(update => update.Action("Edit", "Employees"))
+                .Read(read => read.Action("EmployeeList","Employees"))
+           
+            )
+            )
+
+    </div>
+</div>
+
+<script>
+    function ShowEmployeeDetails(d) {
+        d.preventDefault();
+        var dataItem = this.dataItem($(d.currentTarget).closest("tr"));
+        window.location.href = '/Employees/Edit/' + dataItem.ID;
+    }
+    function DeleteEmployee(e) {
+        e.preventDefault();
+        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        window.location.href = '/Employees/Delete/' + dataItem.ID;
+    }
+    $("#Employee data").click(function (e) {
+        var grid = $("#grid").data("kendoGrid");
+        grid.hideColumn(4);
+        grid.saveAsPDF();
+    });
+</script>
+
+
+<body>
+    <style>
+      
+        
+
+        body {
+            background-image: url('https://images.pexels.com/photos/13210869/pexels-photo-13210869.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load');
+            background-size: cover;
+        }
+        
+        .k-button-solid-base {
+            border-color: rgba(0,0,0,.08);
+            color: #00c4ff;
+            background-color: #f5f5f5;
+            background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.02));
+        }
+
+        .k-grid-header {
+            border-color: rgba(0,0,0,.08);
+            font-size:larger;
+            text-align:justify-all;
+            color:black;
+            background-color: #fff;
+        }
+        .k-button-solid-base {
+                        border-color: rgba(0,0,0,.08);
+                        color: #00c4ff;
+                        background-color:black;
+                        background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.02));
+        }
+
+    </style>
+
+</body>
