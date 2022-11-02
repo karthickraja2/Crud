@@ -25,7 +25,7 @@ namespace Crud.Controllers
             {
                 list.Add(new MyTaskInfo
                 {
-                    ID = Convert.ToInt32(dr["ID"]),
+                    Emp_ID  = Convert.ToInt32(dr["Emp_ID"]),
                     Emp_Name = dr["Emp_Name"].ToString(),
                     Task_Name = dr["Task_Name"].ToString(),
 
@@ -48,7 +48,7 @@ namespace Crud.Controllers
             {
                 /* list.Add(new Employee
                  {*/
-                list.ID = Convert.ToInt32(dr["ID"]);
+                list.Emp_ID = Convert.ToInt32(dr["Emp_ID"]);
                 list.Task_Name = dr["Task_Name"].ToString();
                 list.Emp_Name = dr["Emp_Name"].ToString();
                 //list.Created_Date = DateTime.Now;
@@ -85,7 +85,7 @@ namespace Crud.Controllers
             try
             {
                 MyInfo mi = new MyInfo();
-                mi.Task_ID = id;
+                mi.Emp_ID = id;
 
                 msg = dbop.DeleteMyInfo(mi);
             }

@@ -54,17 +54,49 @@ namespace CrudMVC3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection, MyInfo myin)
         {
-            List<string> result = myin.Task_Name.Split(',').ToList();
-
-            foreach (var task in result)
+            try
             {
-                _services.Post(new MyInfo() { Emp_Name = myin.Emp_Name, Task_Name = task });
+                var flag = "";
+                myin.Response = "";
+                foreach (var items in list)
+                {
+                    var itemsarry = items.Task_Name.ToString().Split(",").ToList();
+                    if (itemsarry.Contains( myin.Task_Name))
+                    {
+                        flag = "1";
+                        break;
+                    }
 
+                }
+                if (flag == "1")
+                {
+                    myin.Response = "This Task Already given to Someone";
+                    return RedirectToAction("Create", new { Response = myin.Response });
+                }
+                else
+                {
+                    List<string> result = myin.Task_Name.Split(',').ToList();
+
+                    foreach (var task in result)
+                    {
+                        _services.Post(new MyInfo() { Emp_Name = myin.Emp_Name, Task_Name = task });
+
+                    }
+                    return RedirectToAction("Index");
+
+                }
+
+                return View(myin);
             }
-
-            return RedirectToAction("Index");
-
+            catch (Exception ex)
+            {
+                return View(ex.Message);
+            }
         }
+
+
+
+
 
         public ActionResult Delete(int id, IFormCollection collection)
         {

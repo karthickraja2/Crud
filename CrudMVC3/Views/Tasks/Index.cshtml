@@ -1,10 +1,13 @@
 ﻿@{
     ViewData["Title"] = "Index";
 }
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
 <p>
+    <br />
     <a asp-action="Create" style="color:mediumaquamarine" class="btn bg-dark">Create New Task</a>
 </p>
-<h1 class="text-center text-warning">TASK LIST</h1>
+<h3 style="font-family:'Berlin Sans FB'" class="text-center  text-dark"><i class="fa-sharp fa-solid fa-list"></i>  Task Details</h3>
 <div class="row">
     <div class="col-12">
         @(
@@ -67,14 +70,13 @@
 <body>
     <style>
         body {
-            background-image: url('https://images.pexels.com/photos/13210869/pexels-photo-13210869.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load');
+            background-image: url('https://images.pexels.com/photos/1037992/pexels-photo-1037992.jpeg?auto=compress&cs=tinysrgb&w=600');
             background-size: cover;
         }
 
         .k-button-solid-base {
             border-color: rgba(0,0,0,.08);
-            color: #00c4ff;
-            background-color: #f5f5f5;
+            color: black;
             background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.02));
         }
 
@@ -83,10 +85,29 @@
             font-size: larger;
             text-align: justify-all;
             color: black;
-            background-color: #fff;
+            background-color: black;
         }
 
+        .k-grid-toolbar {
+            border-color: inherit;
+            background-color: white;
+            box-shadow: none;
+        }
 
+        .k-column-title {
+            min-width: 0;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            -ms-flex-negative: 1;
+            flex-shrink: 1;
+            overflow: hidden;
+            color: white;
+        }
+
+        .k-icon {
+            color: var(--bs-white);
+            background-color:black;
+        }
     </style>
 
 </body>

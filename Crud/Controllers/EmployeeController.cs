@@ -105,7 +105,7 @@ namespace Crud.Controllers
                 try
                 {
                     Employee emp = new Employee();
-                    emp.ID = id;
+                    emp.Emp_ID = id;
                     emp.Type = "delete";
                 
                     msg = dbop.EmployeeOpt(emp);

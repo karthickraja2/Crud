@@ -6,22 +6,22 @@
 }
 
 <div class="card">
-        <div class="card-header">
-            <h1 class="text-left text-success">Edit Employee</h1>
-        </div>
-        <div class=" card-body" class="text-center">
-    <form method="post" asp-controller="Employees" asp-action="Edit">
-        <div class="col-md-4">
-            <label for="Email">Email</label>
-            @Html.Kendo().TextAreaFor(ss=>ss.Email)
-        </div>
-        <div class="col-md-4">
-            <label for="Emp_Name">Emp_Name</label>
-            @Html.Kendo().TextAreaFor(ss=>ss.Emp_Name)
-        </div>
-        <div style="color:red">
-            @Model.Response
-        </div>
+    <div class="card-header">
+        <h1 class="text-left text-success">Edit Employee</h1>
+    </div>
+    <div class=" card-body" class="text-center">
+        <form method="post" asp-controller="Employees" asp-action="Edit">
+            <div class="col-md-4">
+                <label for="Email">Email</label>
+                @Html.Kendo().TextAreaFor(ss=>ss.Email)
+            </div>
+            <div class="col-md-4">
+                <label for="Emp_Name">Emp_Name</label>
+                @Html.Kendo().TextAreaFor(ss=>ss.Emp_Name)
+            </div>
+            <div style="color:red">
+                @Model.Response
+            </div>
             <div class="row-cols-4">
                 <div class="col-md-4">
                     <label for="Designation">Designation:</label>
@@ -39,23 +39,25 @@
                     </select>
                 </div>
 
-            <div class="col-md-4">
-                <label for="Type">Type</label>
-                @Html.Kendo().TextAreaFor(ss=>ss.Type)
-            </div>
+                <div class="col-md-4">
+                    <label for="Type">Type</label>
+                    @Html.Kendo().TextAreaFor(ss=>ss.Type)
+                </div>
 
 
-            <div class="form-group">
-                <input type="submit" value="Update" class="btn-outline-info" />
+                <div class="form-group">
+                    <input type="submit" value="Update" class="btn-outline-info" />
                     <a asp-action="Index">Back to List</a>
+                </div>
+                <br />
             </div>
-            <br />
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
-<style>
-    .card {
-        margin-left: 10px;
-        padding-left: 5px;
-    }
-</style>
+
+    <style>
+        .card {
+            margin-left: 10px;
+            padding-left: 5px;
+        }
+    </style>

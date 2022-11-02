@@ -4,59 +4,76 @@
 @{
     ViewData["Title"] = "Create";
 }
-
+<link href ="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+       <br />
+              <br />
+                     <br />
 <div class=" container">
     <div class="row">
         <div class="col-6 offset-3">
             <div class=" card">
                 <div class="card-header">
-                    <h1 class="text-center text-success">Create Employee</h1>
+                    <h1 class="text-center" style="color:black"><i class="fa-sharp fa-solid fa-people-pulling"></i> Create Employee</h1>
                 </div>
+           
                 <div class=" card-body">
-        <form method="post" asp-controller="Employees" asp-action="Create" id="textView">
-               <div class="col-md-4">
-                <label for="Email">Email</label>
-                @Html.Kendo().TextAreaFor(ss=>ss.Email)
-            </div>
-          
-            <div class="col-md-4">
-                <label for="Emp_Name">Emp_Name</label>
-                @Html.Kendo().TextAreaFor(ss=>ss.Emp_Name)
-            </div>
-            <div style="color:red">
-                @Model.Response
-            </div>
-            <div class="row-cols-4">
-                <div class="col-md-4">
-                    <label for="Designation">Designation:</label>
-                    @*<input type="text" asp-for="Designation" class="form-control" />*@
-                    <select name="Designation" class="form-control" id="Designation">
-                        <option value="" disabled selected hidden>Select Your Designation</option>
-                        <option value="HR">HR</option>
-                        <option value="Team Lead">Team Lead</option>
-                        <option value="Lead">Lead</option>
-                        <option value="Manager">Manager</option>
-                        <option value="Senior Engineer">Senior Engineer</option>
-                        <option value="Trainee Engineer">Trainee Engineer</option>
-                        <option value="Intern">Intern</option>
+                  
+                    <form method="post" asp-controller="Employees" asp-action="Create" id="textView">
+            
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="Email">Email</label>
+                            @Html.Kendo().TextAreaFor(ss=>ss.Email)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="Emp_Name">Emp_Name</label>
+                            @Html.Kendo().TextAreaFor(ss=>ss.Emp_Name)
+                        </div>
+                    </div>
+                    <div style="color:red">
+                        @Model.Response
+                    </div>
+            
+                    <div class="row-cols-6">
+                        <div class="col-md-6">
+                            <label for="Designation">Designation:</label>
+                            @*<input type="text" asp-for="Designation" class="form-control" />*@
+                            <select name="Designation" class="form-control" id="Designation">
+                                <option value="" disabled selected hidden>Select Your Designation</option>
+                                <option value="HR">HR</option>
+                                <option value="Team Lead">Team Lead</option>
+                                <option value="Lead">Lead</option>
+                                <option value="Manager">Manager</option>
+                                <option value="Senior Engineer">Senior Engineer</option>
+                                <option value="Trainee Engineer">Trainee Engineer</option>
+                                <option value="Intern">Intern</option>
 
-                    </select>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-6">
+                        <label for="Type">Type</label>
+                        @Html.Kendo().TextAreaFor(ss=>ss.Type)
+                    </div>
+                    <br />
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+                        <br />
+                    </div>
+                    </form>
                 </div>
-
-
-
-                <div class="col-md-4">
-                    <label for="Type">Type</label>
-                    @Html.Kendo().TextAreaFor(ss=>ss.Type)
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                    <a asp-action="Index">Back to List</a>
-                </div>
-                <br />
             </div>
-        </form>
+        </div>
     </div>
+</div>
     <style>
         .card {
             margin-left: 10px;
@@ -65,7 +82,8 @@
       
            
                     body {
-                        background-image: url('https://images.pexels.com/photos/2341830/pexels-photo-2341830.jpeg?auto=compress&cs=tinysrgb&w=600');
+                      
+                        background-image: url('https://media.istockphoto.com/photos/dark-gloomy-blue-and-black-slate-background-or-texture-picture-id1387342670?k=20&m=1387342670&s=612x612&w=0&h=Ayr994IJLKsyW_uBlnh8cWu6c0o4tEbOcWVMR8Its7k=');
                         background-size: cover;
                     }
 

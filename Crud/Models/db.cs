@@ -292,7 +292,7 @@ namespace Crud.Models
                 SqlCommand com = new SqlCommand("DeleteMyInfo", con);
                 //SqlCommand com = new SqlCommand("getTask", con);
                 com.CommandType = CommandType.StoredProcedure;
-                com.Parameters.AddWithValue("ID", mi.ID);
+                com.Parameters.AddWithValue("@Emp_ID", mi.Emp_ID);
                 SqlDataAdapter da = new SqlDataAdapter(com);
                 da.Fill(ds);
                 msg = "SUCCESS";

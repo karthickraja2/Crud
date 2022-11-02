@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Crud.Models.Task>
+
+
+@{
+    ViewData["Title"] = "Index";
+
+}
+
+
+<p>
+    <a asp-action="Create" style="color:lightpink" class="btn btn-outline-secondary">Create New</a>
+</p>
+<body>
+    <h1 class="text-center text-black-50">Task List</h1>
+    <table class="table table-bordered table-fluid" id="myTable">
+        <style>
+
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 10%;
+            }
+
+            td, th {
+                border: 1px solid #dddd;
+                /*     background-color:white;*/
+                text-align: center;
+                padding: 4px;
+            }
+
+            tr:nth-child(even) {
+                background-color: ghostwhite;
+            }
+
+            body {
+                /*  background-image: url('https://images.pexels.com/photos/66284/winter-nature-season-trees-66284.jpeg?auto=compress&cs=tinysrgb&w=600');*/
+                background-color: white;
+                background-size: cover;
+            }
+
+            .k-icon {
+                color: var(--bs-white);
+            }
+
+            </body >
+        </style>
+        <thead>
+            <tr>
+                <th>
+            @Html.DisplayNameFor(model => model.Task_ID)
+                </th>
+                <th>
+            @Html.DisplayNameFor(model => model.Task_Name)
+                </th>
+                <th>
+            @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+            @Html.DisplayNameFor(model => model.Active)
+                </th>
+        </thead>
+        <tbody>
+
+    @foreach (var item in Model)
+    {
+                <tr>
+                    <td>
+                @Html.DisplayFor(modelItem => item.Task_ID)
+                    </td>
+                    <td>
+                @Html.DisplayFor(modelItem => item.Task_Name)
+                    </td>
+                    <td>
+                @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+             
+                    <td>
+                @Html.ActionLink("Edit", "Edit", new {  id=item.Task_ID },new{@class="btn btn-dark" })
+           
+                @Html.ActionLink("Delete", "Delete", new {  id=item.Task_ID }, new{@class="btn btn-danger"})
+                    </td>
+                </tr>
+    }
+        </tbody>
+    </table>

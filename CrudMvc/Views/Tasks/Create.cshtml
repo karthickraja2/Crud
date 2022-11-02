@@ -1,0 +1,71 @@
+﻿@model Crud.Models.Task
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@*<a style="color:deeppink"<h1>Create</h1> </a>*@
+
+<link href="~/singleselect/example-styles.css" rel="stylesheet" />
+<hr />
+<body>
+    <style>
+        body {
+           /* background-image: url('https://images.pexels.com/photos/10526919/pexels-photo-10526919.jpeg?auto=compress&cs=tinysrgb&w=600');
+            background-size: cover;*/
+        }
+
+    </style>
+
+</body>
+<div class=" container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class=" card">
+                <div class="card-header">
+                    <h1 class="text-center text-success">Create Employee</h1>
+                </div>
+                <div class=" card-body">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="form-group">
+                            <label asp-for="Task_Name" class="control-label"></label>
+                            <input asp-for="Task_Name" class="form-control" placeholder="Enter Task Name" />
+                            <span asp-validation-for="Task_Name" class="text-danger"></span>
+                            
+                        </div>
+                     
+                        <div class="form-group">
+                            <label asp-for="Description " class="control-label">Description</label>
+                            <input asp-for="Description" class="form-control" placeholder="" />
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                    
+                        <div class="form-group">
+                            <label asp-for="Type" class="control-label"></label>
+                            <input asp-for="Type" class="form-control" />
+                            <span asp-validation-for="Type" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                            <a asp-action="Index" style="color:white" class="btn btn-dark">  Back</a>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
+    }
+    }*@
+
+
